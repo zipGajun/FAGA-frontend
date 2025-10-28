@@ -1,0 +1,78 @@
+.gauge-card {
+  text-align: center;
+  position: relative; /* 자식 요소의 absolute 위치 기준점 */
+}
+
+.gauge-container {
+  position: relative;
+  width: 150px;
+  height: 75px; /* Half circle */
+  margin: 20px auto 10px;
+  overflow: hidden;
+}
+
+.gauge-dial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* 그라데이션을 빨강 -> 노랑 -> 초록 순으로 변경 */
+  background: conic-gradient(
+    from -90deg,
+    #e74c3c 0% 12.5%,
+    /* 0-25: Extreme Fear (Red) */ #f39c12 12.5% 25%,
+    /* 25-50: Fear (Orange) */ #a0d468 25% 37.5%,
+    /* 50-75: Greed (Light Green) */ #2ecc71 37.5% 50%
+      /* 75-100: Extreme Greed (Green) */
+  );
+}
+
+.gauge-indicator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 12px;
+  background-color: #333;
+  border-radius: 2px;
+  margin-left: -2px; /* 너비의 절반 */
+  /* 회전 중심을 게이지의 중심(75px, 75px)으로 설정 */
+  transform-origin: 2px 75px;
+  transition: transform 0.5s ease-in-out;
+  z-index: 2;
+}
+
+.gauge-container::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: var(--card-bg);
+  border-radius: 50%;
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+}
+
+.gauge-value {
+  /* 숫자 위치를 게이지 안쪽 하단으로 이동 */
+  position: relative;
+  top: 40px; /* 위치 미세 조정 */
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1;
+  z-index: 3;
+}
+
+.gauge-status {
+  /* 위치를 카드 왼쪽 상단으로 변경 */
+  position: absolute;
+  top: 25px; /* 5px 아래로 이동 */
+  left: 20px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}

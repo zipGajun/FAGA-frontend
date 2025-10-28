@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChartCard from "./ChartCard";
+import GaugeCard from "./components/GaugeCard";
 import RecentOrdersTable from "./RecentOrdersTable";
 import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa";
 import "./ChartCard.css";
 import "./RecentOrdersTable.css";
 import "./EditableTitle.css";
+import "./components/GaugeCard.css";
 
 const Dashboard = () => {
   // 임시 금융 데이터 (나중에 API로 교체 가능)
@@ -70,6 +72,27 @@ const Dashboard = () => {
       ],
     },
   ];
+
+  // Fear & Greed Index를 위한 상태
+  const [fearGreedIndex, setFearGreedIndex] = useState<{
+    value: number;
+    status: string;
+  } | null>(null);
+
+  // 컴포넌트가 처음 렌더링될 때 Fear & Greed Index 데이터를 가져오는 것을 시뮬레이션합니다.
+  useEffect(() => {
+    // 실제 구현에서는 이 부분에 API 호출 코드가 들어갑니다.
+    // 예: fetch('https://my-proxy-server.com/api/fear-greed')
+    //       .then(res => res.json())
+    //       .then(data => setFearGreedIndex(data));
+
+    // 지금은 목업(mock) 데이터를 사용합니다.
+    const mockApiCall = setTimeout(() => {
+      setFearGreedIndex({ value: 43, status: "Fear" });
+    }, 1000); // 1초 후 데이터 로딩
+
+    return () => clearTimeout(mockApiCall); // 컴포넌트 언마운트 시 클린업
+  }, []);
 
   // 초기 주문 데이터
   const initialOrders = [
@@ -159,6 +182,15 @@ const Dashboard = () => {
             strokeColor={item.strokeColor}
           />
         ))}
+        {/* Fear & Greed Index 카드 */}
+        {fearGreedIndex ? (
+          <GaugeCard
+            value={fearGreedIndex.value}
+            status={fearGreedIndex.status}
+          />
+        ) : (
+          <div className="card">Loading...</div>
+        )}
       </section>
 
       <div className="orders-management">
