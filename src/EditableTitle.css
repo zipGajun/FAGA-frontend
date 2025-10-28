@@ -1,0 +1,13 @@
+.title-input {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-color);
+  border: none;
+  border-bottom: 2px solid var(--primary-color);
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}

@@ -1,0 +1,82 @@
+.recent-orders {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.recent-orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.delete-section-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.delete-section-btn:hover {
+  color: var(--status-return);
+  background-color: #fdeeee;
+}
+
+.recent-orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recent-orders th,
+.recent-orders td {
+  text-align: left;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-orders th {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.recent-orders tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: 12px;
+}
+
+.status.delivered {
+  background-color: var(--status-delivered);
+}
+.status.pending {
+  background-color: var(--status-pending);
+}
+.status.in-progress {
+  background-color: var(--status-inprogress);
+}
+.status.return {
+  background-color: var(--status-return);
+}
+
+.show-all {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}

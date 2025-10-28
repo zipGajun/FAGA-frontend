@@ -1,26 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ChartCard from "./ChartCard";
-import {
-  FaTachometerAlt,
-  FaProjectDiagram,
-  FaUsers,
-  FaChartBar,
-  FaCog,
-  FaSearch,
-  FaBell,
-  FaUserCircle,
-} from "react-icons/fa";
+import RecentOrdersTable from "./RecentOrdersTable";
+import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa";
 import "./ChartCard.css";
+import "./RecentOrdersTable.css";
+import "./EditableTitle.css";
 
 const Dashboard = () => {
-  const navItems = [
-    { icon: <FaTachometerAlt />, name: "Dashboard" },
-    { icon: <FaProjectDiagram />, name: "Projects" },
-    { icon: <FaUsers />, name: "Team" },
-    { icon: <FaChartBar />, name: "Reports" },
-    { icon: <FaCog />, name: "Settings" },
-  ];
-
   // 임시 금융 데이터 (나중에 API로 교체 가능)
   const financialData = [
     {
@@ -85,7 +71,8 @@ const Dashboard = () => {
     },
   ];
 
-  const recentOrders = [
+  // 초기 주문 데이터
+  const initialOrders = [
     {
       product: "Laptop Pro",
       number: "86234",
@@ -113,93 +100,89 @@ const Dashboard = () => {
     { product: "Keyboard", number: "86238", payment: "Due", status: "Return" },
   ];
 
+  // 여러 주문 섹션을 관리하기 위한 state (id 추가)
+  const [orderSections, setOrderSections] = useState([
+    { id: 1, title: "Recent Orders", orders: initialOrders },
+  ]);
+
+  // 새 주문 섹션을 추가하는 함수
+  const addOrderSection = () => {
+    const newSection = {
+      id: Date.now(), // 고유한 ID 생성
+      title: `New Section ${orderSections.length}`,
+      // 실제 앱에서는 API 호출 등으로 데이터를 가져옵니다. 여기서는 초기 데이터를 재사용합니다.
+      orders: [...initialOrders].sort(() => 0.5 - Math.random()).slice(0, 3),
+    };
+    setOrderSections([...orderSections, newSection]);
+  };
+
+  // 섹션 제목을 변경하는 함수
+  const handleTitleChange = (id: number, newTitle: string) => {
+    setOrderSections(
+      orderSections.map((section) => {
+        if (section.id === id) {
+          return { ...section, title: newTitle };
+        }
+        return section;
+      })
+    );
+  };
+
+  // 섹션을 삭제하는 함수
+  const handleDeleteSection = (id: number) => {
+    setOrderSections(orderSections.filter((section) => section.id !== id));
+  };
+
   return (
-    <div className="dashboard-container">
-      {/* Sidebar Navigation */}
-      <nav className="sidebar">
-        <div className="sidebar-header">
-          <span className="logo">FAGA</span>
-        </div>
-        <ul className="sidebar-menu">
-          {navItems.map((item, index) => (
-            <li
-              key={index}
-              className={item.name === "Dashboard" ? "active" : ""}
-            >
-              <a href="#">
-                {item.icon}
-                <span>{item.name}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      {/* Main Content */}
-      <main className="main-content">
-        <header className="main-header">
-          <h2>Dashboard</h2>
-          <div className="header-actions">
-            <div className="search-box">
-              <FaSearch />
-              <input type="text" placeholder="Search..." />
-            </div>
-            <FaBell className="action-icon" />
-            <FaUserCircle className="action-icon" />
+    <main className="main-content">
+      <header className="main-header">
+        <h2>Dashboard</h2>
+        <div className="header-actions">
+          <div className="search-box">
+            <FaSearch />
+            <input type="text" placeholder="Search..." />
           </div>
-        </header>
+          <FaBell className="action-icon" />
+          <FaUserCircle className="action-icon" />
+        </div>
+      </header>
 
-        {/* Stats Cards */}
-        <section className="stats-cards">
-          {financialData.map((item) => (
-            <ChartCard
-              key={item.title}
-              title={item.title}
-              value={item.value}
-              change={item.change}
-              data={item.data}
-              strokeColor={item.strokeColor}
+      {/* Stats Cards */}
+      <section className="stats-cards">
+        {financialData.map((item) => (
+          <ChartCard
+            key={item.title}
+            title={item.title}
+            value={item.value}
+            change={item.change}
+            data={item.data}
+            strokeColor={item.strokeColor}
+          />
+        ))}
+      </section>
+
+      <div className="orders-management">
+        <div className="orders-header">
+          <h2>Orders Overview</h2>
+          <button onClick={addOrderSection} className="add-section-btn">
+            + Add Section
+          </button>
+        </div>
+        <div className="orders-grid">
+          {orderSections.map((section) => (
+            <RecentOrdersTable
+              key={section.id}
+              title={section.title}
+              orders={section.orders}
+              onTitleChange={(newTitle) =>
+                handleTitleChange(section.id, newTitle)
+              }
+              onDelete={() => handleDeleteSection(section.id)}
             />
           ))}
-        </section>
-
-        {/* Recent Orders */}
-        <section className="recent-orders">
-          <h2>Recent Orders</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Number</th>
-                <th>Payment</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentOrders.map((order, index) => (
-                <tr key={index}>
-                  <td>{order.product}</td>
-                  <td>{order.number}</td>
-                  <td>{order.payment}</td>
-                  <td>
-                    <span
-                      className={`status ${order.status
-                        .toLowerCase()
-                        .replace(" ", "-")}`}
-                    >
-                      {order.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <a href="#" className="show-all">
-            Show All
-          </a>
-        </section>
-      </main>
-    </div>
+        </div>
+      </div>
+    </main>
   );
 };
 

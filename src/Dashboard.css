@@ -70,6 +70,12 @@
   color: white;
 }
 
+/* react-router-dom의 NavLink active 스타일 */
+.sidebar-menu a.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 /* Main Content */
 .main-content {
   flex-grow: 1;
@@ -162,65 +168,37 @@
   color: var(--status-return);
 }
 
-/* Recent Orders */
-.recent-orders {
-  background-color: var(--card-bg);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+/* Orders Management Section */
+.orders-management {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.recent-orders h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.recent-orders table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.recent-orders th,
-.recent-orders td {
-  text-align: left;
-  padding: 15px 10px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.recent-orders th {
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-.recent-orders tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.status {
-  padding: 5px 10px;
-  border-radius: 15px;
+.add-section-btn {
+  background-color: var(--primary-color);
   color: white;
-  font-size: 12px;
-}
-
-.status.delivered {
-  background-color: var(--status-delivered);
-}
-.status.pending {
-  background-color: var(--status-pending);
-}
-.status.in-progress {
-  background-color: var(--status-inprogress);
-}
-.status.return {
-  background-color: var(--status-return);
-}
-
-.show-all {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  color: var(--primary-color);
-  text-decoration: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.add-section-btn:hover {
+  background-color: #584ab3;
+}
+
+.orders-grid {
+  display: grid;
+  /* 화면 크기에 따라 자동으로 열 개수가 조절되도록 변경 */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 20px;
 }
