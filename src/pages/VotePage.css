@@ -1,0 +1,14 @@
+.vote-page-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 왼쪽 2, 오른쪽 1 비율 */
+  gap: 30px;
+  height: calc(100vh - 150px); /* 헤더와 패딩을 제외한 높이 */
+}
+
+.vote-topic-section {
+  overflow-y: auto;
+}
+
+.vote-betting-section {
+  min-width: 350px;
+}

@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import {
   FaChartLine,
   FaComments,
   FaUsers,
   FaQuestionCircle,
-  FaRobot, // FaRobot 아이콘 추가
+  FaRobot,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 
 const navItems = [
   { path: "/", name: "Dashboard", icon: <FaChartLine /> },
-  { path: "/debate", name: "Debate", icon: <FaComments /> },
+  { path: "/vote", name: "Vote", icon: <FaComments /> },
   { path: "/community", name: "Community", icon: <FaUsers /> },
   { path: "/qa", name: "Q&A", icon: <FaQuestionCircle /> },
   { path: "/ai", name: "AI", icon: <FaRobot /> }, // AI 항목 추가
 ];
 
 const Layout = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <div className="dashboard-container">
+    <div
+      className={`dashboard-container ${
+        isCollapsed ? "sidebar-collapsed" : ""
+      }`}
+    >
       {/* Sidebar Navigation */}
       <nav className="sidebar">
         <div className="sidebar-header">
-          <span className="logo">FAGA</span>
+          <span className="logo">{isCollapsed ? "F" : "FAGA"}</span>
         </div>
         <ul className="sidebar-menu">
           {navItems.map((item) => (
@@ -34,6 +42,13 @@ const Layout = () => {
             </li>
           ))}
         </ul>
+        <div
+          className="sidebar-toggle"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        >
+          {isCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
+          <span>Collapse</span>
+        </div>
       </nav>
       <Outlet />
     </div>

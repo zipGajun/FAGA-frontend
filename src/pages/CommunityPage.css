@@ -1,0 +1,183 @@
+.community-container {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.community-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text-color);
+  background-color: #f4f7fa;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+  border-radius: 8px 8px 0 0;
+}
+
+.write-post-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.write-post-btn:hover {
+  background-color: #584ab3;
+}
+
+.post-list-container {
+  width: 100%;
+}
+
+.post-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.post-table th,
+.post-table td {
+  padding: 15px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+}
+
+.post-table th {
+  color: var(--text-light);
+  font-weight: 500;
+  background-color: #f9fafb;
+}
+
+.post-table tbody tr:hover {
+  background-color: #f4f7fa;
+}
+
+.col-id {
+  width: 5%;
+}
+.col-category {
+  width: 10%;
+}
+.col-title {
+  width: 45%;
+  text-align: left;
+}
+.col-author {
+  width: 10%;
+}
+.col-date {
+  width: 10%;
+}
+.col-views {
+  width: 5%;
+}
+.col-likes {
+  width: 5%;
+}
+
+.post-title a {
+  text-align: left;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.comment-count {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-left: 8px;
+  font-size: 13px;
+}
+
+.category-badge {
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+.category-badge.자유 {
+  background-color: #3498db;
+}
+.category-badge.정보 {
+  background-color: #2ecc71;
+}
+.category-badge.질문 {
+  background-color: #f39c12;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 5px;
+}
+
+.pagination button {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.pagination button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
