@@ -1,0 +1,17 @@
+.chart-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.chart-card-info {
+  flex-shrink: 0;
+}
+
+.chart-wrapper {
+  width: 120px;
+  height: 60px;
+  margin-left: 10px;
+  align-self: center;
+}
