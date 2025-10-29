@@ -1,0 +1,128 @@
+.app-header {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background-color: var(--sidebar-bg);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-item {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 10px 4px;
+  transition: color 0.2s;
+}
+
+.user-profile-section {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+.nav-item:hover {
+  color: var(--text-color);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.search-box svg {
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  background: transparent;
+  color: var(--text-color);
+}
+
+.action-icon {
+  color: var(--text-color);
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-light);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-btn {
+  padding: 6px 16px;
+  border-radius: 4px; /* 각진 디자인 */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+.logout-btn:hover {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

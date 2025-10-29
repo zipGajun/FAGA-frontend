@@ -1,7 +1,7 @@
 .recent-orders {
   background-color: var(--card-bg);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: var(--shadow);
 }
 
@@ -10,6 +10,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.recent-orders-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
 }
 
 .delete-section-btn {
@@ -28,7 +35,7 @@
 
 .delete-section-btn:hover {
   color: var(--status-return);
-  background-color: #fdeeee;
+  background-color: rgba(220, 53, 69, 0.1);
 }
 
 .recent-orders table {
@@ -46,6 +53,10 @@
 .recent-orders th {
   color: var(--text-light);
   font-weight: 500;
+}
+
+.recent-orders td {
+  color: var(--text-color);
 }
 
 .recent-orders tbody tr:last-child td {
