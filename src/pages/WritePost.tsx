@@ -1,11 +1,15 @@
-import React, { useState, useRef } from "react";
-import "./WritePost.css";
-import { FaImage } from "react-icons/fa";
+import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './WritePost.css'
+import { FaImage } from 'react-icons/fa'
+import { useAuth } from '../contexts/AuthContext'
 
 const WritePost = () => {
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [imageSize, setImageSize] = useState(100); // 이미지 너비 %
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [imageSize, setImageSize] = useState(100) // 이미지 너비 %
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const { isLoggedIn } = useAuth()
+  const navigate = useNavigate()
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -15,8 +19,19 @@ const WritePost = () => {
   };
 
   const handleImageUploadClick = () => {
-    fileInputRef.current?.click();
-  };
+    fileInputRef.current?.click()
+  }
+
+  const handleSubmit = () => {
+    if (!isLoggedIn) {
+      alert('글을 등록하려면 로그인이 필요합니다.')
+      navigate('/login')
+      return
+    }
+    // TODO: 실제 글 등록 로직 (서버 API 호출 등)
+    alert('게시글이 등록되었습니다.')
+    navigate('/community') // 등록 후 커뮤니티 페이지로 이동
+  }
 
   return (
     <main className="main-content">
@@ -71,11 +86,13 @@ const WritePost = () => {
             <FaImage /> 이미지 추가
           </button>
           <button className="cancel-btn">취소</button>
-          <button className="submit-btn">등록</button>
+          <button className="submit-btn" onClick={handleSubmit}>
+            등록
+          </button>
         </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default WritePost;
+export default WritePost

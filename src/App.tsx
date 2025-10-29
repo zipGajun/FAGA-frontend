@@ -7,12 +7,17 @@ import Community from './pages/Community'
 import QA from './pages/QA'
 import AI from './pages/AI' // AI 페이지 컴포넌트 import
 import WritePost from './pages/WritePost'
+import ProtectedRoute from './components/ProtectedRoute' // 보호된 라우트 import
+import LoginPage from './pages/LoginPage' // 로그인 페이지
+import SignupPage from './pages/SignupPage' // 회원가입 페이지
 import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="vote" element={<Vote />} />

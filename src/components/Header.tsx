@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import {
   FaUserCircle,
   FaBell,
@@ -21,7 +21,7 @@ const navItems = [
 ]
 
 const Header = () => {
-  const { isLoggedIn, login, logout } = useAuth()
+  const { isLoggedIn, logout } = useAuth()
 
   return (
     <header className="app-header">
@@ -55,9 +55,9 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          <button className="login-btn" onClick={login}>
+          <Link to="/login" className="login-btn">
             로그인
-          </button>
+          </Link>
         )}
       </div>
     </header>

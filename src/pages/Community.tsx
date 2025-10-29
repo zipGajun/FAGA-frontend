@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaPen } from "react-icons/fa";
-import "./CommunityPage.css";
+import React, { useState, useMemo, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FaPen } from 'react-icons/fa'
+import './CommunityPage.css'
+import { useAuth } from '../contexts/AuthContext'
 
 // Mock Post Data
 const mockPosts = [
@@ -73,6 +74,8 @@ const POSTS_PER_PAGE = 5; // 페이지 당 게시글 수
 const Community = () => {
   const [activeCategory, setActiveCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1);
+  const { isLoggedIn } = useAuth()
+  const navigate = useNavigate()
 
   const filteredPosts = useMemo(() => {
     if (activeCategory === "전체") {
@@ -85,6 +88,14 @@ const Community = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [activeCategory]);
+
+  const handleWriteClick = () => {
+    if (!isLoggedIn) {
+      alert('로그인이 필요한 서비스입니다.')
+      return
+    }
+    navigate('/community/write')
+  }
 
   // 페이지네이션 로직
   const indexOfLastPost = currentPage * POSTS_PER_PAGE;
@@ -117,9 +128,9 @@ const Community = () => {
               </button>
             ))}
           </div>
-          <Link to="/community/write" className="write-post-btn">
+          <button onClick={handleWriteClick} className="write-post-btn">
             <FaPen /> 글쓰기
-          </Link>
+          </button>
         </div>
 
         <div className="post-list-container">

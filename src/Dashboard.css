@@ -53,6 +53,18 @@
   overflow-x: hidden; /* 가로 스크롤 방지 */
 }
 
+/* 각 페이지의 제목 헤더 */
+.main-header {
+  margin-bottom: 30px;
+}
+
+.main-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
 /* Stats Cards */
 .stats-cards {
   display: grid;
